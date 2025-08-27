@@ -6,5 +6,5 @@ elif [ $FRUIT == ORANGE ];then
 elif [ $FRUIT == GRAPE ];then
     echo "You selected Grape!"
 else
-    echo "You selected other Fruit!"
+    echo "You selected other fruit!"
 fi
