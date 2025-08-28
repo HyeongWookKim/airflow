@@ -36,6 +36,7 @@ with DAG(
         from dateutil.relativedelta import relativedelta # 스케줄러 부하 경감을 위해 task 내부에서 라이브러리 import
 
         data_interval_end = kwargs['data_interval_end']
+        print(f'data_interval_end: {data_interval_end}') # To check
         prev_month_day_first = data_interval_end.in_timezone('Asia/Seoul') + relativedelta(months = -1, day = 1)
         prev_month_day_last = data_interval_end.in_timezone('Asia/Seoul').replace(day = 1) + relativedelta(days = -1)
         print(prev_month_day_first.strftime('%Y-%m-%d'))
