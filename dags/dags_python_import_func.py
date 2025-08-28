@@ -5,7 +5,7 @@ from common.common_func import get_sftp # .env 파일에 plugins 폴더까지 �
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.python import PythonOperator
 
-# Airflow 2.10.5 이하 버전에서 실습시 아래 경로에서 import
+# Airflow 2.10.5 이하 버전에서 실습 시, 아래 경로에서 import
 # from airflow.operators.python import PythonOperator
 # from airflow import DAG
 
