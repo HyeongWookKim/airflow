@@ -12,8 +12,9 @@ def regist2(name, sex, *args, **kwargs):
     print(f'이름: {name}')
     print(f'성별: {sex}')
     print(f'기타 옵션들: {args}')
-    email = kwargs['email'] or None
-    phone = kwargs['phone'] or None
+
+    email = kwargs['email'] or None # kwargs.get('email') 이라고 작성한 것과 동일함 -> kwargs['email'] 로 작성 시, key 값에 'email'이 없으면 에러 발생
+    phone = kwargs['phone'] or None # kwargs.get('phone') 이라고 작성한 것과 동일함 -> kwargs['phone'] 로 작성 시, key 값에 'phone'이 없으면 에러 발생
     if email:
         print(email)
     if phone:
