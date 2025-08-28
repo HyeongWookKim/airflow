@@ -23,7 +23,7 @@ with DAG(
     bash_t2 = BashOperator(
         task_id = 'bash_t2',
         env = {
-            'START_DATE': '{{ date_interval_start | ds }}',
+            'START_DATE': '{{ data_interval_start | ds }}',
             'END_DATE': '{{ data_interval_end | ds }}'
         },
         bash_command = 'echo $START_DATE && echo $END_DATE' # &&: 앞의 커맨드가 성공하면, 뒤의 커맨드를 실행하겠다는 것을 의미
