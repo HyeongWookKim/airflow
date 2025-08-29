@@ -25,9 +25,11 @@ with DAG(
         task_id = 'send_email',
         to = 'herry1021@gmail.com',
         cc = 'herry1021@hanmail.net',
+        # 메일 제목
         subject = '{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} some_logic 처리 결과',
-        html_content = '{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} 처리 결과는 <br>  \
-                    {{ ti.xcom_pull(task_ids = "some_task") 했습니다. }}'
+        # 메일 내용
+        html_content = '{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} 처리 결과는 <br> \
+                    {{ ti.xcom_pull(task_ids = "some_task") }} 했습니다. <br>'
     )
 
     some_logic() >> send_email
