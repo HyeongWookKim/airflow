@@ -4,7 +4,7 @@ import pendulum
 from airflow.sdk import DAG, task
 from airflow.providers.smtp.operators.smtp import EmailOperator
 
-# Airflow 2.10.5 이하 버전에서 실습시 아래 경로에서 import
+# Airflow 2.10.5 이하 버전에서 실습 시, 아래 경로에서 import
 # from airflow.operators.email import EmailOperator
 # from airflow import DAG
 # from airflow.decorators import task
