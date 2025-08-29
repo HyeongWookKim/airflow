@@ -3,7 +3,7 @@ import pendulum
 # Airflow 3.0 버전부터 아래 경로에서 import
 from airflow.sdk import DAG, task
 
-# Airflow 2.10.5 이하 버전에서 실습시 아래 경로에서 import
+# Airflow 2.10.5 이하 버전에서 실습 시, 아래 경로에서 import
 # from airflow import DAG
 # from airflow.decorators import task
 
