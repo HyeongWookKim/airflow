@@ -20,7 +20,7 @@ with DAG(
         bash_command = "echo START && "
                        "echo XCOM_PUSHED "
                        "{{ ti.xcom_push(key = 'bash_pushed', value = 'first_bash_message') }} && "
-                       "echo COMPLETE"
+                       "echo COMPLETE" # bash_command에서 가장 마지막에 출력된 문자를 return_value에 저장함 (여기서는 "COMPLETE"가 저장됨)
     )
 
     bash_pull = BashOperator(
@@ -29,7 +29,7 @@ with DAG(
         # 버그인지, 의도한 것인지는 확실치 않으나 해결될 때까지 task_ids 값을 넣어서 수행
         env = {
             'PUSHED_VALUE': "{{ ti.xcom_pull(key = 'bash_pushed', task_ids = 'bash_push') }}",
-            'RETURN_VALUE': "{{ ti.xcom_pull(task_ids = 'bash_push') }}"
+            'RETURN_VALUE': "{{ ti.xcom_pull(task_ids = 'bash_push') }}" # xcom_pull 함수에 task_ids 값만 부여하면, xcom의 return_value 값을 가져옴
         },
         bash_command = "echo $PUSHED_VALUE && echo $RETURN_VALUE ",
         do_xcom_push = False # 마지막에 출력된 문장을 xcom에 push 하지 않도록 설정
