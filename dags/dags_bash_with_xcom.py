@@ -28,7 +28,7 @@ with DAG(
         # Airflow 3.0.0 버전부터 task_ids 값을 주지 않으면 Xcom 을 찾지 못합
         # 버그인지, 의도한 것인지는 확실치 않으나 해결될 때까지 task_ids 값을 넣어서 수행
         env = {
-            'PUSHED_VALUE': "{{ ti.xcom_pull(key = 'bash_pushed', task_ids = 'bash_push') }}"
+            'PUSHED_VALUE': "{{ ti.xcom_pull(key = 'bash_pushed', task_ids = 'bash_push') }}",
             'RETURN_VALUE': "{{ ti.xcom_pull(task_ids = 'bash_push') }}"
         },
         bash_command = "echo $PUSHED_VALUE && echo $RETURN_VALUE ",
