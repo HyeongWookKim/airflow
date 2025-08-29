@@ -23,6 +23,7 @@ with DAG(
 
     send_email = EmailOperator(
         task_id = 'send_email',
+        conn_id = 'conn_smtp_gmail', # Airflow 3.0 버전부터 적용되는 부분 (사전에 Airflow UI에서 connection 생성 필요)
         to = 'herry1021@gmail.com',
         cc = 'herry1021@hanmail.net',
         # 메일 제목
