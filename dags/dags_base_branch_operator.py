@@ -52,4 +52,4 @@ with DAG(
         op_kwargs = {'selected': 'C'}
     )
 
-    custom_branch_operator >> ['task_a', 'task_b', 'task_c']
+    custom_branch_operator >> [task_a, task_b, task_c]
