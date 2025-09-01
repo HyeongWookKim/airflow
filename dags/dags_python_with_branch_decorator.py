@@ -1,22 +1,22 @@
-import pendulum
+from datetime import datetime
 
 # Airflow 3.0 버전부터 아래 경로에서 import
+from airflow.sdk import DAG, task
 from airflow.providers.standard.operators.python import PythonOperator
-from airflow.providers.standard.operators.python import BranchPythonOperator
-from airflow.sdk import DAG
 
 # Airflow 2.10.5 이하 버전에서 실습 시, 아래 경로에서 import
 # from airflow import DAG
+# from airflow.decorators import task
 # from airflow.operators.python import PythonOperator
-# from airflow.operators.python import BranchPythonOperator
 
 with DAG(
-    dag_id = 'dags_branch_python_operator',
-    start_date = pendulum.datetime(2023, 4, 1, tz = 'Asia/Seoul'), 
-    schedule = '0 1 * * *',
+    dag_id = 'dags_python_with_branch_decorator',
+    start_date = datetime(2023, 4, 1),
+    schedule = None,
     catchup = False
 ) as dag:
-
+    
+    @task.branch(task_id = 'python_brach_task')
     def select_random():
         import random
 
@@ -27,11 +27,6 @@ with DAG(
         elif selected_item in ['B', 'C']:
             return ['task_b', 'task_c']
         
-    python_branch_task = BranchPythonOperator(
-        task_id = 'python_branch_task',
-        python_callable = select_random
-    )
-
     def common_func(**kwargs):
         print(kwargs['selected'])
 
@@ -52,5 +47,5 @@ with DAG(
         python_callable = common_func,
         op_kwargs = {'selected': 'C'}
     )
-
-    python_branch_task >> [task_a, task_b, task_c]
+    
+    select_random() >> [task_a, task_b, task_c]
