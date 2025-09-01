@@ -25,7 +25,7 @@ with DAG(
         task_id = 'empty_2'
     )
     
-    empty_1 >> label('1과 2 사이') >> empty_2
+    empty_1 >> Label('1과 2 사이') >> empty_2
 
     # 예시 2
     empty_3 = EmptyOperator(
