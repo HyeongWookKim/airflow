@@ -60,7 +60,7 @@ class SeoulApiToCsvOperator(BaseOperator):
             request_url += f'/{self.base_dt}'
 
         resp = requests.get(request_url, headers)
-        contents = json.loads(resp)
+        contents = json.loads(resp.text)
 
         key_nm = list(contents.keys())[0]
         row_data = contents.get(key_nm).get('row')
