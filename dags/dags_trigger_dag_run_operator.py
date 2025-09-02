@@ -26,7 +26,9 @@ with DAG(
         task_id = 'trigger_dag_task',
         trigger_dag_id = 'dags_python_operator',
         trigger_run_id = None,
-        execution_date = '{{ data_interval_start }}',
+        execution_date = '{{ data_interval_start }}', 
+        # execution_date='{{data_interval_start}}', # Airflow 3.0.x 버전에서는 logical_date 인자 사용(?)
+        logical_date = '{{data_interval_start}}', # trigger_run_id 값을 부여하지 않으면, Run ID는 "manual_{data_interval_start}" 값으로 찍힘
         reset_dag_run = True, # Run ID가 이미 존재해도 다시 돌릴지 여부
         wait_for_completion = False, # Triggering 된 DAG이 완료될 때까지 기다릴지 말지 여부
         poke_interval = 60, # 수행 완료 여부 모니터링 주기
