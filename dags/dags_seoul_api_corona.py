@@ -32,7 +32,7 @@ with DAG(
     '''
     tv_corona19_vaccine_stat_new = SeoulApiToCsvOperator(
         task_id = 'tv_corona19_vaccine_stat_new',
-        dataset_nm = 'tvCorona19VaccinestatNew'
+        dataset_nm = 'tvCorona19VaccinestatNew',
         path = '/opt/airflow/files/tvCorona19VaccinestatNew/{{ data_interval_end.in_timezone("Asia/Seoul") | ds_nodash }}',
         file_name = 'tvCorona19VaccinestatNew.csv'
     )
