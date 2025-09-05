@@ -16,13 +16,13 @@ with DAG(
     catchup = False
 ) as dag:
     
-    def insert_postgres(postgres_conn_id, table_name, file_name, **kwargs):
+    def insrt_postgres(postgres_conn_id, table_name, file_name, **kwargs):
         custom_postgres_hook = CustomPostgresHook(postgres_conn_id = postgres_conn_id)
         custom_postgres_hook.bulk_load(table_name = table_name, file_name = file_name, delimiter = ',', is_header = True, is_replace = True)
 
-    insert_postgres = PythonOperator(
-        task_id = 'insert_postgres',
-        python_callable = insert_postgres,
+    insrt_postgres = PythonOperator(
+        task_id = 'insrt_postgres',
+        python_callable = insrt_postgres,
         op_kwargs = {
             'postgres_conn_id': 'conn-db-postgres-custom',
             'table_name': 'TbCorona19CountStatus_bulk2',
