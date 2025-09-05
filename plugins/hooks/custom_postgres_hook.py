@@ -44,12 +44,14 @@ class CustomPostgresHook(BaseHook):
                 
         self.log.info(f'적재 건수: {str(len(df_file))}')
 
-        uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
+        uri = f'postgresql+psycopg2://{self.user}:{self.password}@{self.host}:{self.port}/{self.dbname}'
         engine = create_engine(uri)
-        df_file.to_sql(
-            name = table_name,
-            con = engine,
-            schema = 'public',
-            if_exists = if_exists,
-            index = False
-        )
+        
+        with engine.connect() as conn:
+            df_file.to_sql(
+                name = table_name,
+                con = conn,
+                schema = 'public',
+                if_exists = if_exists,
+                index = False
+            )
