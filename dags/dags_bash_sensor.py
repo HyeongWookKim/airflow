@@ -46,7 +46,7 @@ with DAG(
             fi
         ''',
         poke_interval = 60 * 3, # 3분
-        timeout = 60 * 9 # 9분
+        timeout = 60 * 9, # 9분
         mode = 'reschedule', # 조건을 만족할 때만 running (Slot을 항상 차지 X)
         soft_fail = True # Skipped 상태로 마무리
     )
