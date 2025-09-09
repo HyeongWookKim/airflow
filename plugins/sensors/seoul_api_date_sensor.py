@@ -19,7 +19,7 @@ class SeoulApiDateSensor(BaseSensorOperator):
         '''
         super().__init__(**kwargs)
         self.http_conn_id = 'data.seoul.go.kr'
-        self.endpoint = f'{{ var.value.apikey_openapi_seoul_go_kr }}/json/{dataset_nm}/1/100' # 최근 데이터 100개만 추출
+        self.endpoint = '{{ var.value.apikey_openapi_seoul_go_kr }}/json/' + dataset_nm + '/1/100' # 최근 데이터 100개만 추출
         self.base_dt_col = base_dt_col
         self.day_off = day_off
 
