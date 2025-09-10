@@ -43,13 +43,26 @@ class CustomPostgresHook(BaseHook):
                 continue # string 타입 컬럼이 아닐 경우, continue 처리
                 
         self.log.info(f'적재 건수: {str(len(df_file))}')
-
+        
         uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
-        engine = create_engine(uri)
-        df_file.to_sql(
-            name = table_name,
-            con = engine,
-            schema = 'public',
-            if_exists = if_exists,
-            index = False
-        )
+        
+        # # Pandas 버전이 2.2 미만인 경우, 아래와 같이 코드 작성
+        # engine = create_engine(uri)
+        # df_file.to_sql(
+        #     name = table_name,
+        #     con = engine,
+        #     schema = 'public',
+        #     if_exists = if_exists,
+        #     index = False
+        # )
+        
+        # Pandas 버전이 2.2 이상인 경우, 아래와 같이 코드 작성
+        engine = create_engine(uri, future = True)
+        with engine.begin() as conn:
+            df_file.to_sql(
+                name = table_name,
+                con = conn,
+                schema = 'public',
+                if_exists = if_exists,
+                index = False
+            )
