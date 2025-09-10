@@ -17,7 +17,7 @@ with DAG(
         schedule = [asset_dags_dataset_producer_1, asset_dags_dataset_producer_2], # 구독할 key 값을 리스트에 입력
         start_date = pendulum.datetime(2023, 4, 1, tz = 'Asia/Seoul'),
         catchup = False,
-        tags = ['asset','consumer']
+        tags = ['asset', 'consumer']
 ) as dag:
     
     bash_task = BashOperator(

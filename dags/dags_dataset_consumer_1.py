@@ -9,14 +9,14 @@ from airflow.sdk import DAG, Asset
 # from airflow import DAG
 # from airflow import Dataset
 
-asset_dags_asset_producer_1 = Asset('dags_dataset_producer_1') # Publish 했던 key 값 입력
+asset_dags_asset_producer_1 = Asset('dags_dataset_producer_1') # Publish 하는 key 값 입력
 
 with DAG(
         dag_id = 'dags_dataset_consumer_1',
         schedule = [asset_dags_asset_producer_1], # 구독할 key 값을 리스트에 입력
         start_date = pendulum.datetime(2023, 4, 1, tz = 'Asia/Seoul'),
         catchup = False,
-        tags = ['asset','consumer']
+        tags = ['asset', 'consumer']
 ) as dag:
     
     bash_task = BashOperator(
