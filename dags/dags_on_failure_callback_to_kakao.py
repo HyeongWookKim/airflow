@@ -11,7 +11,7 @@ from airflow.providers.standard.operators.bash import BashOperator
 # from airflow.operators.bash import BashOperator
 
 with DAG(
-    dag_id = 'dags_on_failure_callback_to_slack',
+    dag_id = 'dags_on_failure_callback_to_kakao',
     start_date = pendulum.datetime(2023, 5, 1, tz = 'Asia/Seoul'),
     schedule = '*/20 * * * *',
     catchup = False,
