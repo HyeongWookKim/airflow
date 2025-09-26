@@ -13,7 +13,7 @@ with DAG(
     schedule = '10 0 * * 6',
     start_date = pendulum.datetime(2023, 5, 1, tz = 'Asia/Seoul'),
     catchup = False,
-    default_pool = {'pool': 'pool_small'} # Slot 개수가 3개인 pool 지정
+    default_args = {'pool': 'pool_small'} # Slot 개수가 3개인 pool 지정
 ) as dag:
     
     bash_task_1 = BashOperator(
