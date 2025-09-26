@@ -39,7 +39,7 @@ with DAG(
                     ]
                     return_blocks = []
 
-                    # 1) 실패대상
+                    # 1) 실패 대상
                     failed_df = result.query("(failed_cnt > 0)")
                     return_blocks.append(sb.section_text("*2 실패 대상*"))
                     if not failed_df.empty:
