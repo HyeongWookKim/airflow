@@ -15,7 +15,7 @@ from airflow.sdk import DAG
 
 with DAG(
     dag_id = 'dags_daily_dag_monitoring',
-    start_date = pendulum.datetime(2023,5,1, tz = 'Asia/Seoul'),
+    start_date = pendulum.datetime(2025, 9, 1, tz = 'Asia/Seoul'),
     schedule = '0 8 * * *',
     catchup = False
 ) as dag:
