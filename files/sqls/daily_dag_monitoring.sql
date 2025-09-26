@@ -1,3 +1,5 @@
+-- 아래 쿼리문은 Airflow 2.x.x 버전 기준으로 작성되었기 때문에,
+-- Airflow 3.x.x 버전에서 사용하려면, 테이블을 보고 컬럼 명 수정이 필요함
 with today_dag as (
 	SELECT 
 		 dag_id
